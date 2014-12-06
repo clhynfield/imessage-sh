@@ -1,0 +1,12 @@
+#!/bin/sh
+
+targetBuddy="$1"; shift
+targetMessage=$@
+
+osascript <<EOF
+	tell application "Messages"
+		set targetService to 1st service whose service type = iMessage
+		set targetBuddy to buddy "$targetBuddy" of targetService
+		send "$targetMessage" to targetBuddy
+	end tell
+EOF
